@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chris's blog</title>
+    <link rel="shortcut icon" href="/statics/img/christas.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/statics/css/b1.min.css">
+    <link rel="stylesheet" href="/statics/css/side-b.css">
+    <link rel="stylesheet" href="/statics/css/conts.css">
+    <link rel="stylesheet" type="text/css" href="/statics/css/iconfont.css">
+</head>
+<body>
+<div class="main">
+    {% include "include/detailHeader.html" %}
+    {% block body  %}
+    {% endblock %}
+   {% include "include/side-content.html" %}
+    {% block content %}
+    {% endblock %}
+<div class="contents">
+    <div id="title_blog">
+            <div id="title_con">{{ Thme.title }}</div>
+    </div>
+    <div class="blog_text">
+        <div>{{ Thme.content |safe }}</div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+</div>
+<div class="footer">
+    <div class="social"></div>
+    <div class="copyright">Power by <a href="https://www.djangoproject.com/" style="color: red;">Django</a></div>
+</div>
+
+</body>
+    <script src="/statics/js/jquery-3.3.1.min.js"></script>
+    <script src="/statics/js/jquery.nicescroll.min.js"></script>
+    <script src="/statics/js/b1.js"></script>
+</html>

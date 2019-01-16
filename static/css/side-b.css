@@ -1,0 +1,90 @@
+/*边框菜单栏*/
+#hamburgermenu {
+    /*flex-direction: column;*/
+    /*display: flex;*/
+    height: 100%;
+    /*width: 0;*/
+    width: 0;
+    background: #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    overflow: hidden;
+    -webkit-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
+    -moz-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
+    box-shadow: 3px 0 7px rgba(0,0,0,0.55);
+}
+.total{
+    margin-top: 20px;
+    padding-left: 30px;
+    font-size: 20px;
+    text-align: left;
+    color: #f75357;
+}
+.side-box{
+    flex-direction: column;
+    display: flex;
+    overflow-y:auto;
+    overflow-x:hidden;
+    /*overflow: hidden;*/
+    width: 340px;
+    height: 100%;
+}
+.annual-index{
+    /*display: flex;*/
+    width: 339px;
+    flex-shrink: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+.post-item{
+    vertical-align: middle;
+    border-left: 1px solid #bbb;
+    margin-left: 0.3rem;
+    padding: 0.1rem 0 0.1rem 0.5rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type:none;
+    text-align: left;
+}
+.post-item a:hover{
+    color: #f75357;
+}
+.list-data{
+    font: 0.9rem/1rem "Oswald-Regular";
+    color: #999;
+}
+.lists-title{
+    font-size: 1rem;
+    margin-left: 0.8rem;
+    text-align: left;
+    color: #ccc;
+}
+/*#hamburgermenu li a:hover {*/
+  /*color: #fff;*/
+/*}*/
+.overlay {
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.5);
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+body.openmenu {
+  position: fixed;
+  overflow: hidden;
+}
+.overlay {
+  position: fixed;
+  z-index: 99;
+  background-color: rgba(0,0,0,0.5);
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.openmenu .overlay {
+  top: 0;
+}
+/*---------------------------*/

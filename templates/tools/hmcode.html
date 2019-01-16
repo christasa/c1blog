@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chris's blog</title>
+    <link rel="stylesheet" href="/statics/css/b1.css">
+    <link rel="stylesheet" href="/statics/css/side-b.css">
+    <link rel="stylesheet" type="text/css" href="/statics/css/iconfont.css">
+    <link rel="shortcut icon" href="/statics/img/christas.ico" type="image/x-icon" />
+</head>
+<body>
+<div class="main">
+    {% include "include/headers.html" %}
+    {% block body  %}
+    {% endblock %}
+   {% include "include/side-content.html" %}
+    {% block content %}
+    {% endblock %}
+<div class="contents">
+    <form action="base64s" method="post">
+        {% csrf_token %}
+        <div id="title_ba64">请将需要加密或者解密的语句输入到下面的输入框中</div>
+        <div class="label_b64">
+            <textarea   id="encode_decode" name="con"></textarea>
+        </div>
+         <div class="submit_b64">
+{#             <input type="submit" value="base64解密" name="decode">#}
+             <input type="button" value="html解密" onclick="AjaxSubmitH('decode');">
+             <input type="button" value="html加密" onclick="AjaxSubmitH('encode');">
+{#             <input type="submit" value="base64加密" name="encode">#}
+         </div>
+    </form>
+    <div class="results">
+        <textarea id="encode_decode" name="con">{{ result }}</textarea>
+    </div>
+</div>
+<div class="overlay"></div>
+</div>
+<div class="footer">
+    <div class="social"></div>
+    <div class="copyright">Power by <a href="https://www.djangoproject.com/" style="color: red;">Django</a></div>
+</div>
+
+</body>
+    <script src="/statics/js/jquery-3.3.1.min.js"></script>
+    <script src="/statics/js/jquery.nicescroll.min.js"></script>
+    <script src="/statics/js/b1.js"></script>
+</html>

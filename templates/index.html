@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chris's blog</title>
+    <link rel="stylesheet" href="/statics/css/b1.css">
+    <link rel="stylesheet" href="/statics/css/side-b.css">
+    <link rel="stylesheet" type="text/css" href="/statics/css/iconfont.css">
+    <link rel="shortcut icon" href="/statics/img/christas.ico" type="image/x-icon" />
+</head>
+<body>
+<div class="main">
+{% include "include/headers.html" %}
+    {% block body  %}
+    {% endblock %}
+<script>
+</script>
+        {% include "include/side-content.html" %}
+        {% block content %}
+        {% endblock %}
+    <div class="contents">
+    {# 小工具列表 #}
+        <div class="sTools">
+            <h1>小工具</h1>
+            <ul>
+                <li><a href="/tools/base64s">Base64加解密</a></li>
+                <li><a href="/tools/htmls">Html加解密</a></li>
+            </ul>
+        </div>
+        <div class="index-pages">
+            {% for themes in Them %}
+            <div class="themes">
+                <a href="{% url 'detail' themes.id%}"><h1>{{ themes.title }}</h1></a>
+                       <div class="text">{{ themes.abstract }}</div>
+                    <div class="lines">
+                        <div id="date">{{ themes.datetime |date:"Y/m/d "}}</div>
+                        <div id="types">#{{ themes.blog_type }}</div>
+                    </div>
+            </div>
+            {% endfor %}
+        <div id="pages">
+            <ul id="each-nav" >
+            {# 如果有当前页面 #}
+            {% if Them.has_previous %}
+                <li><a href="?page={{ Them.number | add:-1}}" >PRIVATE</a></li>
+                {% else %}
+                <li><a href="?page={{ Them.number|add:-1}}"  style="display: none;">PRIVATE</a></li>
+            {% endif %}
+                {% for page_num in Them.paginator.page_range %}
+                    {# 如果页面为当前页面则特殊显示 #}
+                    {% ifequal page_num Them.number %}
+                        <li style="color: #f75357!important;">{{ page_num }}</li>
+                        {% else %}
+                        {% ifequal page_num '...' %}
+                            <li>{{ page_num }}</li>
+                            {% endifequal %}
+                        <li><a href="?page={{ page_num }}" >{{ page_num }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+                        {% if Them.has_next %}
+                                <li><a href="?page={{ Them.number|add:1}}" >NEXT</a></li>
+                {% else %}
+                     <li><a href="?page={{ Them.number|add:1}}"  style="display: none;">NEXT</a></li>
+                 {% endif %}
+            </ul>
+        </div>
+        </div>
+    </div>
+<div class="overlay"></div>
+</div>
+<div class="footer">
+    <div class="social"></div>
+    <div class="copyright">Power by <a href="https://www.djangoproject.com/" style="color: red;">Django</a></div>
+</div>
+
+</body>
+    <script src="/statics/js/jquery-3.3.1.min.js"></script>
+    <script src="/statics/js/jquery.nicescroll.min.js"></script>
+{#    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>#}
+    <script src="/static/ckeditor/ckeditor-init.js"></script>
+    <script src="/statics/js/b1.min.js"></script>
+    <script>
+        $(".titles").hide();
+      window.onload=function() {
+        $(".titles").slideDown(1500, function () {
+            $(this).next().slideDown(1500, arguments.callee);
+        });
+        $(".headers p").hide();
+    };
+    </script>
+</html>
