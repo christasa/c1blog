@@ -20,8 +20,7 @@ from Myblog import settings
 from chris import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path(r'_christa/',admin.site.urls),
+    path('admin/', admin.site.urls),
     path('',views.index,name='index'),
     path('index/',views.index),
     path('tools/base64s/',views.base64s),
