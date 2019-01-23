@@ -1,3 +1,5 @@
+# _*_ coding: utf-8 _*_
+
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -20,7 +22,8 @@ class Blog_contant(models.Model):
     id = models.AutoField(primary_key = True)  # 建立博客了id，便于数据库的查找
     title=models.CharField(max_length=100)
     blog_type=models.ForeignKey(BlogType,on_delete=None)   # 博客类型
-    content=RichTextField()          # 博客内容
+    #content=RichTextField()          # 博客内容
+    content =  RichTextUploadingField()
     author=models.ForeignKey(User,on_delete=None)    # 博客作者
     abstract = models.TextField()    # 博客摘要
     datetime = models.DateTimeField()   # 博客时间

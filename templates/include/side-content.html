@@ -6,7 +6,7 @@
                 <ul class="year-list">
                     {% for ThemesSide in side_in %}
                     <li class="post-item">
-                            <span class="list-data">{{ ThemesSide.datetime | date:"m/d"}}</span>
+                            <span class="list-data">{{ ThemesSide.datetime | date:"Y/m/d"}}</span>
                             <a href="{%url 'detail' ThemesSide.id  %}" class="lists-title">{{ ThemesSide.title }}</a>
                     </li>
                     {% endfor %}

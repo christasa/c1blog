@@ -1,0 +1,36 @@
+{% block content %}
+            <aside class="l_side">
+          <section class="author">
+            <div class="content pure">
+              <div class="avatar">
+                <img class="avatar" src="/static/img/christa.jpg"></div>
+              <div class="text">
+                <p>
+                  <span id="jinrishici-sentence">What doesn't kill you makes you stronger</span></p>
+                <script src="/static/js/jinrishici.js" charset="utf-8"></script>
+              </div>
+            </div>
+          </section>
+          <section class="category">
+            <header class="pure">
+              <div>
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+            </header>
+            <div class="content pure">
+              <ul class="entry">
+                  {% for each in types %}
+                      <li>
+                  <a class="flat-box waves-effect waves-block" title="/blog/categories/cocoa-dev/" href="#">
+                    <div class="name">{{ each.type_name }}</div>
+                    <div class="badge"></div>
+                  </a>
+                </li>
+                  {% endfor %}
+              </ul>
+            </div>
+          </section>
+        {% include "include/OpenSource.html" %}
+        {% block contant %}
+        {% endblock %}
+        </aside>
+{% endblock %}

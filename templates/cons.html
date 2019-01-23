@@ -1,40 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>chris's blog</title>
-    <link rel="shortcut icon" href="/statics/img/christas.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/statics/css/b1.min.css">
-    <link rel="stylesheet" href="/statics/css/side-b.css">
-    <link rel="stylesheet" href="/statics/css/conts.css">
-    <link rel="stylesheet" type="text/css" href="/statics/css/iconfont.css">
-</head>
-<body>
-<div class="main">
-    {% include "include/detailHeader.html" %}
-    {% block body  %}
-    {% endblock %}
-   {% include "include/side-content.html" %}
-    {% block content %}
-    {% endblock %}
-<div class="contents">
-    <div id="title_blog">
-            <div id="title_con">{{ Thme.title }}</div>
-    </div>
-    <div class="blog_text">
-        <div>{{ Thme.content |safe }}</div>
-    </div>
-</div>
+<html>
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>christa's blog</title>
+        <meta name="HandheldFriendly" content="True">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#f24e32">
+        <meta name="msapplication-TileColor" content="#f24e32">
+        <link rel="stylesheet" href="/static/css/waves.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+          <link rel="shortcut icon" href="/static/img/christas.ico" type="image/x-icon" />
+          <link rel="stylesheet" href="/static/highlight/styles/default.css">
+        <script src="/static/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="/static/css/style.min.css">
+        <script>function setLoadingBarProgress(e) {
+            document.getElementById("loading-bar").style.width = e + "%"
+          }</script>
+  </head>
 
-<div class="overlay"></div>
-</div>
-<div class="footer">
-    <div class="social"></div>
-    <div class="copyright">Power by <a href="https://www.djangoproject.com/" style="color: red;">Django</a></div>
-</div>
+  <body>
+    <div id="loading-bar-wrapper">
+      <div id="loading-bar" class="pure"></div>
+    </div>
+    <script>setLoadingBarProgress(20)</script>
+    {% include "include/Headers.html" %}
+    {% block body %}
+    {% endblock %}
+    <script>setLoadingBarProgress(40)</script>
+    <div class="l_body">
+      <div class="container clearfix">
+        <div class="l_main">
+          <article id="post" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+            <section class="meta">
+              <div class="meta" id="header-meta">
+                <h1 class="title">{{ Thme.title }}</h1>
+                <time class="metatag time">
+                  <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;{{ Thme.datetime | date:"Y-m-d" }}</time>
+                <div class="metatag cats">
+                  <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;
+                  <a class="categories" href="#">{{ Thme.blog_type }}</a></div>
+              </div>
+            </section>
+            <section class="article typo">
+                {{ Thme.content |safe }}
+            </section>
+              {# 博客中上下翻页的功能 #}
+{#               <div class="prev-next">#}
+{#                          <section class="prev">#}
+{#                  <span class="art-item-left">#}
+{#                    <h6>#}
+{#                      <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>#}
+{#                    <h4>#}
+{#                      <a href="?page={{ Thme.number | add:-1}}" rel="prev" title="Excel 导出 iOS、Android 多国语言工具">Excel 导出 iOS、Android 多国语言工具</a></h4>#}
+{#                  </span>#}
+{#                </section>#}
+{#                <li><a href="?page={{ Them.number|add:-1}}"  style="display: none;">PRIVATE</a></li>#}
+{#                <section class="next">#}
+{#                  <span class="art-item-right" aria-hidden="true">#}
+{#                    <h6>下一页&nbsp;#}
+{#                      <i class="fas fa-chevron-right" aria-hidden="true"></i></h6>#}
+{#                    <h4>#}
+{#                      <a href="#" rel="prev" title="封装 .framework 静态库">封装 .framework 静态库</a></h4>#}
+{#                  </span>#}
+{#                </section>#}
+{#               </div>#}
+          </article>
+          <br>
+          <script>window.subData = {
+              title: {{ Thme.title }},
+              tools: !0
+            }</script>
+        </div>
+            {% include "include/author.html" %}
+      {% block content %}
+      {% endblock %}
+        <script>setLoadingBarProgress(60)</script></div>
+      <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+    </div>
+   {% include "include/footers.html" %}
+    {% block footer %}
+    {% endblock %}
+    <script>setLoadingBarProgress(80)</script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY = "",
+      GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "",
+      ALGOLIA_API_KEY = "",
+      ALGOLIA_APP_ID = "",
+      ALGOLIA_INDEX_NAME = "",
+      AZURE_SERVICE_NAME = "",
+      AZURE_INDEX_NAME = "",
+      AZURE_QUERY_KEY = "",
+      BAIDU_API_ID = "",
+      SEARCH_SERVICE = "hexo",
+      ROOT = "/blog/";
+      ROOT.endsWith("/") || (ROOT += "/")</script>
+    <script src="/static/js/scrollreveal.js"></script>
+    <script type="text/javascript">$(function() {
+        const $reveal = $('.reveal');
+        if ($reveal.length === 0) return;
+        const sr = ScrollReveal({
+          distance: 0
+        });
+        sr.reveal('.reveal');
+      });</script>
+    <script src="/static/js/waves.js"></script>
+    <script type="text/javascript">$(function() {
+        Waves.attach(".flat-btn", ["waves-button"]),
+        Waves.attach(".float-btn", ["waves-button", "waves-float"]),
+        Waves.attach(".float-btn-light", ["waves-button", "waves-float", "waves-light"]),
+        Waves.attach(".flat-box", ["waves-block"]),
+        Waves.attach(".float-box", ["waves-block", "waves-float"]),
+        Waves.attach(".waves-image"),
+        Waves.init()
+      })</script>
+    <script async src="/static/js/busuanzi.js"></script>
+{#    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>#}
+    <script src="/static/js/volantis.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>setLoadingBarProgress(100)</script>
+    <script>!
+      function(o) {
+        var i = Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));
+        function c(t, e) {
+          var n = new Image,
+          o = t.getAttribute("data-original");
+          n.onload = function() {
+            t.src = o,
+            e && e()
+          },
+          n.src = o
+        }
+        function n() {
+          for (var t = 0; t < i.length; t++) e = i[t],
+          void 0,
+          0 <= (n = e.getBoundingClientRect()).top && 0 <= n.left && n.top <= (o.innerHeight || document.documentElement.clientHeight) && c(i[t],
+          function() {
+            i.splice(t, t)
+          });
+          var e, n;
+          console.log("trigger")
+        }
+        n(),
+        o.addEventListener("scroll",
+        function() {
+          var t, e;
+          t = n,
+          e = o,
+          clearTimeout(t.tId),
+          t.tId = setTimeout(function() {
+            t.call(e)
+          },
+          500)
+        })
+      } (this);</script>
+  </body>
 
-</body>
-    <script src="/statics/js/jquery-3.3.1.min.js"></script>
-    <script src="/statics/js/jquery.nicescroll.min.js"></script>
-    <script src="/statics/js/b1.js"></script>
 </html>

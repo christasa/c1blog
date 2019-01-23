@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse,render_to_response
 from django.core.paginator import  Paginator
 from plugin import codes
 import json
-from .models import Blog_contant
+from .models import Blog_contant,BlogType
 # Create your views here.
 
 def index(request):
@@ -21,7 +21,8 @@ def index(request):
     # 将第一页和最后一页放在翻页条中
     if page_range[0]!=1:page_range[0]=1
     if page_range[-1]!=paginator.num_pages:page_range[5]=paginator.num_pages
-    return render(request,'index.html',{'Them':page_of_blogs,'totals':total,'side_in':blog_all_list})
+    Type_counts = BlogType.objects.all()
+    return render(request,'index.html',{'Them':page_of_blogs,'totals':total,'side_in':blog_all_list,'types':Type_counts})
 
 
 # 小工具中的base64编解码
@@ -89,7 +90,10 @@ def DetailBlog(request,id):
     '''每一页的博客的详细内容'''
     blogDetail = Blog_contant.objects.get(id=id)  # 定位到当前博客的位置
     all_blog = Blog_contant.objects.all()
-    total=Blog_contant.objects.all().count()   # 计算博客的总数
-    return render(request,'cons.html',{'Thme':blogDetail,'total}':total,'side_in':all_blog})
+    Type_counts = BlogType.objects.all()
+    return render(request,'cons.html',{'Thme':blogDetail,'side_in':all_blog,'types':Type_counts})
 
-
+def List(request):
+    all_blog = Blog_contant.objects.all()
+    Type_counts = BlogType.objects.all()
+    return render(request,'lists.html',{'AllBlog':all_blog,'types':Type_counts})

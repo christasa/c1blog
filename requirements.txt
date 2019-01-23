@@ -1,2 +1,2 @@
 PyMySQL==0.9.3
-Django==2.1rc1
+Django==2.1.5

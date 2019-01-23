@@ -1,0 +1,61 @@
+{% block body %}
+        <header class="l_header pure">
+      <div class="wrapper">
+        <div class="nav-main container container--flex">
+          <a class="logo flat-box waves-effect waves-block" href="#">christa's blog</a>
+          <div class="menu">
+            <ul class="h-list">
+              <li>
+                <a class="nav flat-box waves-effect waves-block" href="#">
+                  <i class="fas fa-home fa-fw"></i>&nbsp;主页</a>
+              </li>
+              <li>
+                <a id="blog" class="nav flat-box waves-effect waves-block active" href="/index">
+                  <i class="fas fa-rss fa-fw"></i>&nbsp;博客</a>
+              </li>
+              <li>
+                <a id="blogarchives" class="nav flat-box waves-effect waves-block" href="/lists">
+                  <i class="fas fa-archive fa-fw"></i>&nbsp;归档</a>
+              </li>
+            </ul>
+          </div>
+          <ul class="switcher h-list">
+            <li class="s-menu">
+              <a class="fas fa-bars fa-fw" href="javascript:void(0)"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-sub container container--flex">
+          <a class="logo flat-box waves-effect waves-block"></a>
+          <ul class="switcher h-list">
+            <li class="s-comment">
+              <a class="flat-btn fas fa-comments fa-fw waves-effect waves-button" href="javascript:void(0)"></a>
+            </li>
+            <li class="s-toc">
+              <a class="flat-btn fas fa-list fa-fw waves-effect waves-button" href="javascript:void(0)"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <aside class="menu-phone">
+      <header>
+        <nav class="menu">
+          <ul>
+            <li>
+              <a class="nav flat-box waves-effect waves-block" href="#">
+                <i class="fas fa-home fa-fw"></i>&nbsp;主页</a>
+            </li>
+            <li>
+              <a id="blog" class="nav flat-box waves-effect waves-block active" href="/index">
+                <i class="fas fa-rss fa-fw"></i>&nbsp;博客</a>
+            </li>
+            <li>
+              <a id="blogarchives" class="nav flat-box waves-effect waves-block" href="/lists">
+                <i class="fas fa-archive fa-fw"></i>&nbsp;归档</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </aside>
+{% endblock %}

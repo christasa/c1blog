@@ -1,91 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>chris's blog</title>
-    <link rel="stylesheet" href="/statics/css/b1.css">
-    <link rel="stylesheet" href="/statics/css/side-b.css">
-    <link rel="stylesheet" type="text/css" href="/statics/css/iconfont.css">
-    <link rel="shortcut icon" href="/statics/img/christas.ico" type="image/x-icon" />
-</head>
-<body>
-<div class="main">
-{% include "include/headers.html" %}
-    {% block body  %}
-    {% endblock %}
-<script>
-</script>
-        {% include "include/side-content.html" %}
-        {% block content %}
-        {% endblock %}
-    <div class="contents">
-    {# 小工具列表 #}
-        <div class="sTools">
-            <h1>小工具</h1>
-            <ul>
-                <li><a href="/tools/base64s">Base64加解密</a></li>
-                <li><a href="/tools/htmls">Html加解密</a></li>
-            </ul>
-        </div>
-        <div class="index-pages">
-            {% for themes in Them %}
-            <div class="themes">
-                <a href="{% url 'detail' themes.id%}"><h1>{{ themes.title }}</h1></a>
-                       <div class="text">{{ themes.abstract }}</div>
-                    <div class="lines">
-                        <div id="date">{{ themes.datetime |date:"Y/m/d "}}</div>
-                        <div id="types">#{{ themes.blog_type }}</div>
-                    </div>
-            </div>
-            {% endfor %}
-        <div id="pages">
-            <ul id="each-nav" >
-            {# 如果有当前页面 #}
-            {% if Them.has_previous %}
-                <li><a href="?page={{ Them.number | add:-1}}" >PRIVATE</a></li>
-                {% else %}
-                <li><a href="?page={{ Them.number|add:-1}}"  style="display: none;">PRIVATE</a></li>
-            {% endif %}
-                {% for page_num in Them.paginator.page_range %}
-                    {# 如果页面为当前页面则特殊显示 #}
-                    {% ifequal page_num Them.number %}
-                        <li style="color: #f75357!important;">{{ page_num }}</li>
-                        {% else %}
-                        {% ifequal page_num '...' %}
-                            <li>{{ page_num }}</li>
-                            {% endifequal %}
-                        <li><a href="?page={{ page_num }}" >{{ page_num }}</a></li>
-                    {% endifequal %}
-                {% endfor %}
-                        {% if Them.has_next %}
-                                <li><a href="?page={{ Them.number|add:1}}" >NEXT</a></li>
-                {% else %}
-                     <li><a href="?page={{ Them.number|add:1}}"  style="display: none;">NEXT</a></li>
-                 {% endif %}
-            </ul>
-        </div>
-        </div>
-    </div>
-<div class="overlay"></div>
-</div>
-<div class="footer">
-    <div class="social"></div>
-    <div class="copyright">Power by <a href="https://www.djangoproject.com/" style="color: red;">Django</a></div>
-</div>
+<html class="sr">
 
-</body>
-    <script src="/statics/js/jquery-3.3.1.min.js"></script>
-    <script src="/statics/js/jquery.nicescroll.min.js"></script>
-{#    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>#}
-    <script src="/static/ckeditor/ckeditor-init.js"></script>
-    <script src="/statics/js/b1.min.js"></script>
-    <script>
-        $(".titles").hide();
-      window.onload=function() {
-        $(".titles").slideDown(1500, function () {
-            $(this).next().slideDown(1500, arguments.callee);
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>christa's blog</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="theme-color" content="#f24e32">
+    <meta name="msapplication-TileColor" content="#f24e32">
+    <link rel="stylesheet" href="/static/css/waves.css">
+      <link rel="shortcut icon" href="/static/img/christas.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <script>function setLoadingBarProgress(e) {
+        document.getElementById("loading-bar").style.width = e + "%"
+      }</script>
+    <script type="text/javascript" defer="defer" src="/static/js/busuanzi.js"></script>
+  </head>
+
+  <body style="height: 100%;">
+    <div id="loading-bar-wrapper" style="display: none;">
+      <div id="loading-bar" class="pure" style="width: 100%;"></div>
+    </div>
+    <script>setLoadingBarProgress(20)</script>
+    {% include "include/Headers.html" %}
+    {% block body %}
+    {% endblock %}
+    <script>setLoadingBarProgress(40)</script>
+    <div class="l_body">
+      <div class="container clearfix">
+        <div class="l_main">
+          <section class="post-list">
+                {% for themes in Them %}
+            <div class="post-wrapper">
+              <article class="post reveal" data-sr-id="0" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                <section class="meta">
+                  <div class="meta" id="header-meta">
+                    <h2 class="title">
+			    <a href="{% url 'detail' themes.id%}">{{ themes.title }}</a></h2>
+                    <time class="metatag time">
+                      <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;{{ themes.datetime |date:"Y-m-d "}}</time>
+                    <div class="metatag cats">
+                      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;
+                      <a class="categories" href="javascript:void(0);">{{ themes.author }}</a></div>
+                  </div>
+                </section>
+                <section class="article typo">
+                 {{ themes.abstract }}
+                  <div class="readmore">
+                    <a href="{% url 'detail' themes.id%}" class="flat-box waves-effect waves-block">
+                      <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>阅读全文</a>
+                  </div>
+                  <div class="full-width auto-padding tags">
+                    <a href="javascript:void(0);">
+                      <i class="fas fa-hashtag fa-fw"></i>{{ themes.blog_type }}</a>
+                  </div>
+                </section>
+              </article>
+            </div>
+              {% endfor %}
+          </section>
+          <br>
+          <div class="prev-next">
+            <div class="prev-next">
+                     {% if Them.has_previous %}
+                         <a class="prev" rel="prev" href="?page={{ Them.number | add:-1}}">
+                <section class="post prev">
+                  <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;</section>
+              </a>
+                {% else %}
+                         <a class="prev" rel="prev" href="?page={{ Them.number | add:-1}}" style="display: block;">
+                <section class="post prev">
+                  <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;</section>
+              </a>
+                     {% endif %}
+                <p class="current">{{Them.number }}/{{ Them.paginator.num_pages }}</p>
+                   {% if Them.has_next %}
+              <a class="next" rel="next" href="?page={{ Them.number | add:1}}">
+                <section class="post next">&nbsp;下一页&nbsp;
+                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </section>
+              </a>
+                   {% else %}
+              <a class="next" rel="next" href="?page={{ Them.number | add:-1}}" style="display:none;">
+                <section class="post next">&nbsp;下一页&nbsp;
+                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </section>
+              </a>                 {% endif %}
+
+            </div>
+          </div>
+        </div>
+    {% include "include/author.html" %}
+      {% block content %}
+      {% endblock %}
+        <script>setLoadingBarProgress(60)</script></div>
+      <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+    </div>
+ {% include "include/footers.html" %}
+    {% block footer %}
+    {% endblock %}
+    <script>setLoadingBarProgress(80)</script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY = "",
+      GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "",
+      ALGOLIA_API_KEY = "",
+      ALGOLIA_APP_ID = "",
+      ALGOLIA_INDEX_NAME = "",
+      AZURE_SERVICE_NAME = "",
+      AZURE_INDEX_NAME = "",
+      AZURE_QUERY_KEY = "",
+      BAIDU_API_ID = "",
+      SEARCH_SERVICE = "hexo",
+      ROOT = "/blog/";
+      ROOT.endsWith("/") || (ROOT += "/")</script>
+    <script src="/static/js/scrollreveal.js"></script>
+    <script type="text/javascript">$(function() {
+        const $reveal = $('.reveal');
+        if ($reveal.length === 0) return;
+        const sr = ScrollReveal({
+          distance: 0
         });
-        $(".headers p").hide();
-    };
-    </script>
+        sr.reveal('.reveal');
+      });</script>
+    <script src="/static/js/waves.js"></script>
+    <script type="text/javascript">$(function() {
+        Waves.attach(".flat-btn", ["waves-button"]),
+        Waves.attach(".float-btn", ["waves-button", "waves-float"]),
+        Waves.attach(".float-btn-light", ["waves-button", "waves-float", "waves-light"]),
+        Waves.attach(".flat-box", ["waves-block"]),
+        Waves.attach(".float-box", ["waves-block", "waves-float"]),
+        Waves.attach(".waves-image"),
+        Waves.init()
+      })</script>
+    <script async="" src="/static/js/busuanzi.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>setLoadingBarProgress(100)</script>
+    <script>!
+      function(o) {
+        var i = Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));
+        function c(t, e) {
+          var n = new Image,
+          o = t.getAttribute("data-original");
+          n.onload = function() {
+            t.src = o,
+            e && e()
+          },
+          n.src = o
+        }
+        function n() {
+          for (var t = 0; t < i.length; t++) e = i[t],
+          void 0,
+          0 <= (n = e.getBoundingClientRect()).top && 0 <= n.left && n.top <= (o.innerHeight || document.documentElement.clientHeight) && c(i[t],
+          function() {
+            i.splice(t, t)
+          });
+          var e, n;
+          console.log("trigger")
+        }
+        n(),
+        o.addEventListener("scroll",
+        function() {
+          var t, e;
+          t = n,
+          e = o,
+          clearTimeout(t.tId),
+          t.tId = setTimeout(function() {
+            t.call(e)
+          },
+          500)
+        })
+      } (this);</script>
+  </body>
+
 </html>

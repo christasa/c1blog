@@ -21,3 +21,7 @@
 
 .icon-xiangshang:before { content: "\e62c"; }
 
+@media screen and (max-width:1200px){
+	.iconfont{font-size:30px;}
+	.colorChan{width:45px;}
+}
