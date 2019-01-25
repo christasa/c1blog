@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>christa</title>
+    <title>{{ auth.username }}</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -26,7 +26,7 @@
     <div id="header">
       <a id="logo" href="/">
         <img src="/static/img/christas.ico">
-        <span>christa</span></a>
+        <span>{{ auth.username }}</span></a>
       <ul id="nav">
         <li class="nav-dropdown-container more">
           <a class="nav-link">
@@ -39,7 +39,7 @@
                     <i class="fas fa-bookmark fa-fw"></i>&nbsp;书签</a>
                 </li>
                   <li>
-                  <a class="nav-link" target="_blank" href="https://github.com/xaoxuu" rel="external nofollow noopener noreferrer">
+                  <a class="nav-link" target="_blank" href="{{ auth.github }}" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-github fa-fw"></i>&nbsp;GitHub</a>
                 </li>
               </ul>
@@ -53,7 +53,7 @@
         <ul class="main-menu">
           <br>
           <h2>
-            <a href="/">christa</a></h2>
+            <a href="/">{{ auth.username }}</a></h2>
           <li class="nav-dropdown-container more">
             <a class="nav-link">
               <i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
@@ -72,7 +72,7 @@
               <li>
                 <ul>
                   <li>
-                    <a class="nav-link" target="_blank" href="https://github.com/xaoxuu" rel="external nofollow noopener noreferrer">
+                    <a class="nav-link" target="_blank" href="{{ auth.github }}" rel="external nofollow noopener noreferrer">
                       <i class="fab fa-github fa-fw"></i>&nbsp;GitHub</a>
                   </li>
                 </ul>
@@ -89,11 +89,11 @@
           <img class="hero-logo" src="/static/img/christa.jpg" alt="avatar"></div>
           {# ------------------------------------------------------ #}
         <div class="right">
-          <h2 class="vue">christa</h2>
+          <h2 class="vue">{{ auth.username }}</h2>
           <div class="home-nav">
             <ul class="pure">
               <li>
-                <a href="https://github.com/chritsa">
+                <a href="{{ auth.github }}">
                   <i class="fas fa-flask"></i>项目</a>
               </li>
               <li>
@@ -118,7 +118,7 @@
     </div>
     <div class="content">
         <div class="style-example example">
-          <p>一枚热爱web安全，俗话说不喜欢学文的程序员不是好黑客<br/></p>
+          <p>{{ auth.motto }}<br/></p>
         </div>
     </div>
     <div id="posts">
