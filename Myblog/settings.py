@@ -20,10 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yj+z71*2v%7^-j2%sqnd62)37-*#e$ec%ht#h9((_9e9cqji(z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -110,17 +109,38 @@ WSGI_APPLICATION = 'Myblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE':'django.db.backends.mysql',
-        'NAME':'chrisBlog',
-        'USER':'root',
-        'PASSWORD':'chrispaul3',
-        'HOST':'',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+
+# Cache
+# 数据库缓存
+# python manage.py createcachetable my_cache_table
+# CACHES = {
+#     'default':{
+#         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'my_cache_table'.
+#     }
+# }
+
+# 本地文件缓存
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': '/var/tmp/django_cache',#这个是文件夹的路径
+#         #'LOCATION': 'c:\foo\bar',#windows下的示例
+#     }
+# }
+
+# 内存缓存，线程安全
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -146,10 +166,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #修改支持中文
 LANGUAGE_CODE = 'en-us'
-#LANGUAGE_CODE = 'zh-cn'
 
 TIME_ZONE = 'UTC'
-#TIME_ZONE = 'Asia/Shanghai'
+
 USE_I18N = True
 
 USE_L10N = True
@@ -162,11 +181,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'statics')
 
 
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,"statics"),
+    os.path.join(BASE_DIR,"static"),
 ]
 
 STATICFILES_FINDERS =(

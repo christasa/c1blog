@@ -1,179 +1,162 @@
 <!DOCTYPE html>
-<html class="sr">
-
+<html lang="zh-CN">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>christa</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>christa's blog</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <meta name="theme-color" content="#f24e32">
-    <meta name="msapplication-TileColor" content="#f24e32">
-    <link rel="stylesheet" href="/static/css/waves.css">
-      <link rel="shortcut icon" href="/static/img/christas.ico" type="image/x-icon" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.css">
-    <link rel="stylesheet" href="/static/css/style.min.css">
-    <script>function setLoadingBarProgress(e) {
-        document.getElementById("loading-bar").style.width = e + "%"
-      }</script>
-    <script type="text/javascript" defer="defer" src="/static/js/busuanzi.js"></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="shortcut icon" href="/static/img/christas.ico">
+    <script async src="/static/js/busuanzi.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+    <script src="/static/js/APlayer.min.js"></script>
+    <script src="/static/js/Meting.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+      <link rel="stylesheet" href="/static/css/page.min.css">
+    <script src="/static/js/vue.min.js"></script>
+    <script>Vue.config.productionTip = !1,
+      window.PAGE_TYPE = ""</script>
   </head>
 
-  <body style="height: 100%;">
-    <div id="loading-bar-wrapper" style="display: none;">
-      <div id="loading-bar" class="pure" style="width: 100%;"></div>
+  <body>
+    <div id="mobile-bar" class="top">
+      <a class="menu-button fas fa-bars"></a>
+      <a class="logo" href="/"></a>
     </div>
-    <script>setLoadingBarProgress(20)</script>
-    {% include "include/Headers.html" %}
-    {% block body %}
-    {% endblock %}
-    <script>setLoadingBarProgress(40)</script>
-    <div class="l_body">
-      <div class="container clearfix">
-        <div class="l_main">
-          <section class="post-list">
-                {% for themes in Them %}
-            <div class="post-wrapper">
-              <article class="post reveal" data-sr-id="0" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
-                <section class="meta">
-                  <div class="meta" id="header-meta">
-                    <h2 class="title">
-			    <a href="{% url 'detail' themes.id%}">{{ themes.title }}</a></h2>
-                    <time class="metatag time">
-                      <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;{{ themes.datetime |date:"Y-m-d "}}</time>
-                    <div class="metatag cats">
-                      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;
-                      <a class="categories" href="javascript:void(0);">{{ themes.author }}</a></div>
-                  </div>
-                </section>
-                <section class="article typo">
-                 {{ themes.abstract }}
-                  <div class="readmore">
-                    <a href="{% url 'detail' themes.id%}" class="flat-box waves-effect waves-block">
-                      <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>阅读全文</a>
-                  </div>
-                  <div class="full-width auto-padding tags">
-                    <a href="javascript:void(0);">
-                      <i class="fas fa-hashtag fa-fw"></i>{{ themes.blog_type }}</a>
-                  </div>
-                </section>
-              </article>
-            </div>
-              {% endfor %}
-          </section>
+    <div id="header">
+      <a id="logo" href="/">
+        <img src="/static/img/christas.ico">
+        <span>christa</span></a>
+      <ul id="nav">
+        <li class="nav-dropdown-container more">
+          <a class="nav-link">
+            <i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
+          <ul class="nav-dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a class="nav-link" href="javascript:void(0)">
+                    <i class="fas fa-bookmark fa-fw"></i>&nbsp;书签</a>
+                </li>
+                  <li>
+                  <a class="nav-link" target="_blank" href="https://github.com/xaoxuu" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-github fa-fw"></i>&nbsp;GitHub</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-inner-index">
+        <ul class="main-menu">
           <br>
-          <div class="prev-next">
-            <div class="prev-next">
-                     {% if Them.has_previous %}
-                         <a class="prev" rel="prev" href="?page={{ Them.number | add:-1}}">
-                <section class="post prev">
-                  <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;</section>
-              </a>
-                {% else %}
-                         <a class="prev" rel="prev" href="?page={{ Them.number | add:-1}}" style="display: block;">
-                <section class="post prev">
-                  <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;</section>
-              </a>
-                     {% endif %}
-                <p class="current">{{Them.number }}/{{ Them.paginator.num_pages }}</p>
-                   {% if Them.has_next %}
-              <a class="next" rel="next" href="?page={{ Them.number | add:1}}">
-                <section class="post next">&nbsp;下一页&nbsp;
-                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                </section>
-              </a>
-                   {% else %}
-              <a class="next" rel="next" href="?page={{ Them.number | add:-1}}" style="display:none;">
-                <section class="post next">&nbsp;下一页&nbsp;
-                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                </section>
-              </a>                 {% endif %}
-
-            </div>
+          <h2>
+            <a href="/">christa</a></h2>
+          <li class="nav-dropdown-container more">
+            <a class="nav-link">
+              <i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
+            <ul class="nav-dropdown">
+              <li>
+                <ul>
+                  <li>
+                    <a class="nav-link" href="//appx.online/bookmarks">
+                      <i class="fas fa-bookmark fa-fw"></i>&nbsp;书签</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h4></h4>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <a class="nav-link" target="_blank" href="https://github.com/xaoxuu" rel="external nofollow noopener noreferrer">
+                      <i class="fab fa-github fa-fw"></i>&nbsp;GitHub</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="hero">
+      <div class="inner">
+          {# 这里为头像 #}
+        <div class="left">
+          <img class="hero-logo" src="/static/img/christa.jpg" alt="avatar"></div>
+          {# ------------------------------------------------------ #}
+        <div class="right">
+          <h2 class="vue">christa</h2>
+          <div class="home-nav">
+            <ul class="pure">
+              <li>
+                <a href="https://github.com/chritsa">
+                  <i class="fas fa-flask"></i>项目</a>
+              </li>
+              <li>
+                <a href="/blog">
+                  <i class="fas fa-rss"></i>博客</a>
+              </li>
+            </ul>
+            <ul class="pure">
+              <li>
+                <a href="/lists">
+                  <i class="fas fa-archive"></i>归档</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+{#                  <i class="fas fa-user"></i>关于#}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-    {% include "include/author.html" %}
-      {% block content %}
-      {% endblock %}
-        <script>setLoadingBarProgress(60)</script></div>
-      <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
     </div>
- {% include "include/footers.html" %}
+    <div class="content">
+        <div class="style-example example">
+          <p>一枚热爱web安全，俗话说不喜欢学文的程序员不是好黑客<br/></p>
+        </div>
+    </div>
+    <div id="posts">
+      <div class="inner">
+        <h2>TIMELINE</h2>
+        <br>
+          {% for project in pro %}
+        <div class="content with-sidebar blog post">
+          <div class="header">
+            <h3>
+              <a href="{{ project.url }}">{{ project.title }}</a></h3>
+            <h5>
+              <i class="far fa-clock"></i>&nbsp;&nbsp;{{ project.datetime|date:"Y-m-d l" }}</h5>
+          </div>
+            {{ project.detail | safe}}
+          <a href="{{ project.url }}">[查看详情]</a></div>
+          {% endfor %}
+          </div>
+      </div>
+    </div>
+    <script>!
+      function() {
+        var e = !1;
+        window.addEventListener("scroll",
+        function() {
+          165 < window.pageYOffset && !e ? (e = !0, document.getElementById("mobile-bar").classList.remove("top")) : window.pageYOffset <= 165 && e && (e = !1, document.getElementById("mobile-bar").classList.add("top"))
+        })
+      } ()</script>
+    {% include "include/footers.html" %}
     {% block footer %}
     {% endblock %}
-    <script>setLoadingBarProgress(80)</script>
-    <script src="/static/js/jquery-3.3.1.min.js"></script>
-    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY = "",
-      GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "",
-      ALGOLIA_API_KEY = "",
-      ALGOLIA_APP_ID = "",
-      ALGOLIA_INDEX_NAME = "",
-      AZURE_SERVICE_NAME = "",
-      AZURE_INDEX_NAME = "",
-      AZURE_QUERY_KEY = "",
-      BAIDU_API_ID = "",
-      SEARCH_SERVICE = "hexo",
-      ROOT = "/blog/";
-      ROOT.endsWith("/") || (ROOT += "/")</script>
-    <script src="/static/js/scrollreveal.js"></script>
-    <script type="text/javascript">$(function() {
-        const $reveal = $('.reveal');
-        if ($reveal.length === 0) return;
-        const sr = ScrollReveal({
-          distance: 0
-        });
-        sr.reveal('.reveal');
-      });</script>
-    <script src="/static/js/waves.js"></script>
-    <script type="text/javascript">$(function() {
-        Waves.attach(".flat-btn", ["waves-button"]),
-        Waves.attach(".float-btn", ["waves-button", "waves-float"]),
-        Waves.attach(".float-btn-light", ["waves-button", "waves-float", "waves-light"]),
-        Waves.attach(".flat-box", ["waves-block"]),
-        Waves.attach(".float-box", ["waves-block", "waves-float"]),
-        Waves.attach(".waves-image"),
-        Waves.init()
-      })</script>
-    <script async="" src="/static/js/busuanzi.js"></script>
-    <script src="/static/js/app.js"></script>
-    <script>setLoadingBarProgress(100)</script>
-    <script>!
-      function(o) {
-        var i = Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));
-        function c(t, e) {
-          var n = new Image,
-          o = t.getAttribute("data-original");
-          n.onload = function() {
-            t.src = o,
-            e && e()
-          },
-          n.src = o
-        }
-        function n() {
-          for (var t = 0; t < i.length; t++) e = i[t],
-          void 0,
-          0 <= (n = e.getBoundingClientRect()).top && 0 <= n.left && n.top <= (o.innerHeight || document.documentElement.clientHeight) && c(i[t],
-          function() {
-            i.splice(t, t)
-          });
-          var e, n;
-          console.log("trigger")
-        }
-        n(),
-        o.addEventListener("scroll",
-        function() {
-          var t, e;
-          t = n,
-          e = o,
-          clearTimeout(t.tId),
-          t.tId = setTimeout(function() {
-            t.call(e)
-          },
-          500)
-        })
-      } (this);</script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/fastclick.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded",
+      function() {
+        FastClick.attach(document.body)
+      },
+      !1)</script>
   </body>
 
 </html>

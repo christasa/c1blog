@@ -20,9 +20,9 @@
               <ul class="entry">
                   {% for each in types %}
                       <li>
-                  <a class="flat-box waves-effect waves-block" title="/blog/categories/cocoa-dev/" href="#">
-                    <div class="name">{{ each.type_name }}</div>
-                    <div class="badge"></div>
+                  <a class="flat-box waves-effect waves-block" title="/blog/categories/cocoa-dev/" href="{% url 'blog' each.type_id %}">
+                    <div class="name">{{ each.type }}</div>
+                    <div class="badge">({{ each.type_count }})</div>
                   </a>
                 </li>
                   {% endfor %}

@@ -11,7 +11,10 @@ class BlogShow(admin.ModelAdmin):
 class TypeShow(admin.ModelAdmin):
     list_display = ('type_name',)
 
+class ProjectsShow(admin.ModelAdmin):
+    list_display = ('title','datetime','url')
 
 admin.site.register(models.Blog_contant, BlogShow)
 admin.site.register(models.BlogType,TypeShow)
-admin.site.register(models.Task)
+admin.site.register(models.Project,ProjectsShow)
+# admin.site.register(models.Task)
