@@ -49,13 +49,20 @@ def DetailBlog(request,id):
     project = Project.objects.all()
     all_blog = Blog_contant.objects.all()
     Type_all = []
+    # 博客上下页功能
+    try:
+        preblog = Blog_contant.objects.get(id=id-1)
+    except:preblog=None
+    try:
+        nextblog = Blog_contant.objects.get(id=id+1)
+    except:nextblog=None
     for blogtype in BlogType.objects.all():
         Types = {}
         Types['type'] = blogtype
         Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
-    return render(request,'cons.html',{'Thme':blogDetail,'side_in':all_blog,'types':Type_all,'pro':project,'auth':auth})
+    return render(request,'cons.html',{'Thme':blogDetail,'side_in':all_blog,'types':Type_all,'pro':project,'auth':auth,'pre':preblog,'next':nextblog})
 
 def List(request):
     """"所有博客列表"""

@@ -42,32 +42,43 @@
                   <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;{{ Thme.datetime | date:"Y-m-d" }}</time>
                 <div class="metatag cats">
                   <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;
-                  <a class="categories" href="#">{{ Thme.blog_type }}</a></div>
+                  <a class="categories" href="{% url 'blog' Thme.blog_type_id %}">{{ Thme.blog_type }}</a></div>
               </div>
             </section>
             <section class="article typo">
                 {{ Thme.content |safe }}
             </section>
               {# 博客中上下翻页的功能 #}
-{#               <div class="prev-next">#}
-{#                          <section class="prev">#}
-{#                  <span class="art-item-left">#}
-{#                    <h6>#}
-{#                      <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>#}
-{#                    <h4>#}
-{#                      <a href="?page={{ Thme.number | add:-1}}" rel="prev" title="Excel 导出 iOS、Android 多国语言工具">Excel 导出 iOS、Android 多国语言工具</a></h4>#}
-{#                  </span>#}
-{#                </section>#}
-{#                <li><a href="?page={{ Them.number|add:-1}}"  style="display: none;">PRIVATE</a></li>#}
-{#                <section class="next">#}
-{#                  <span class="art-item-right" aria-hidden="true">#}
-{#                    <h6>下一页&nbsp;#}
-{#                      <i class="fas fa-chevron-right" aria-hidden="true"></i></h6>#}
-{#                    <h4>#}
-{#                      <a href="#" rel="prev" title="封装 .framework 静态库">封装 .framework 静态库</a></h4>#}
-{#                  </span>#}
-{#                </section>#}
-{#               </div>#}
+              <div class="prev-next">
+                  {% if pre %}
+                <section class="prev">
+                  <span class="art-item-left">
+                    <h6>
+                      <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                    <h4>
+                      <a href="{% url 'detail' pre.id%}" rel="prev" title="{{ pre.title }}">{{ pre.title }}</a></h4>
+                    <h6 class="tags">
+                      <a class="tag" href="{% url 'blog' pre.blog_type_id %}">
+                        <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>{{ pre.blog_type }}</a>
+                    </h6>
+                  </span>
+                </section>
+                  {% endif %}
+              {% if next %}
+                <section class="next">
+                  <span class="art-item-right" aria-hidden="true">
+                    <h6>下一页&nbsp;
+                      <i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                    <h4>
+                      <a href="{% url 'blog' next.id %}" rel="prev" title="{{ next.title }}">{{ next.title }}</a></h4>
+                    <h6 class="tags">
+                      <a class="tag" href="{% url 'blog' next.blog_type_id %}">
+                        <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>{{ next.blog_type }}</a>
+                    </h6>
+                  </span>
+                </section>
+              {% endif %}
+              </div>
           </article>
           <br>
           <script>window.subData = {
