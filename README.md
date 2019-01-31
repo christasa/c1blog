@@ -1,7 +1,7 @@
 # C1blog
-
-
-
+```
+example:http://christa.top
+```
 ## 使用方法
 
 在文件目录下执行：
@@ -17,12 +17,8 @@ python manage.py migrate
 ```
 python manege.py createsuperuser
 ```
-##### 打开本地服务器：
-```
-python manege.py runserver 9000
-```
-浏览器打开 `主机ip:9000` 查看效果
-
+##### 修改缓存类型：
+在settings.py中的数据库、文件和内存的三个缓存类型，将需要的缓存类型注释去除即可
 ## 图片预览
 
 ![](http://christa.top/static/media/uploads/2019/01/31/first.png)
