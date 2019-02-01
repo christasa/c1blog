@@ -9,12 +9,14 @@
             </header>
             <div class="content pure">
               <ul class="entry">
+                  {% for pros in pro %}
                 <li>
-                  <a class="flat-box waves-effect waves-block" title="https://github.com/chritsa/c1blog" href="{{ pro.url }}">
+                  <a class="flat-box waves-effect waves-block" title="{{ pros.url }}" href="{{ pros.url }}">
                     <div class="name">
-                      <i class="fas fa-cube fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;{{ pro.title }}</div>
-                    <div class="badge">({{ pro.type }})</div></a>
+                      <i class="fas fa-cube fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;{{ pros.title }}</div>
+                    <div class="badge">({{ pros.type }})</div></a>
                 </li>
+                  {% endfor %}
               </ul>
             </div>
           </section>
