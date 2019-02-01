@@ -2,20 +2,22 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
+
 class BlogType(models.Model):
     """博客类型"""
     type_name= models.CharField(max_length=15)
+
     def __unicode__(self):
         return self.type_name
 
     # 返回一个种下拉菜单的名字中的名字
     def __str__(self):
         return self.type_name
+
 
 class Blog_contant(models.Model):
     """博客总内容"""
@@ -26,8 +28,10 @@ class Blog_contant(models.Model):
     author=models.ForeignKey(User,on_delete=models.CASCADE)    # 博客作者
     abstract = models.TextField()    # 博客摘要
     datetime = models.DateTimeField()   # 博客时间
+
     def __unicode__(self):
         return self.title
+
     class Meta:    # 按时间降序
         ordering = ['-datetime']
 
@@ -39,8 +43,10 @@ class Project(models.Model):
     detail = RichTextUploadingField() # 简介
     url = models.CharField(max_length=200)  # 项目的链接
     type = models.CharField(max_length=200)  # 项目所属类型
+
     def __unicode__(self):
         return self.title
+
     class Meta:
         ordering = ['-datetime']
 
