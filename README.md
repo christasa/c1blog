@@ -1,7 +1,8 @@
 # C1blog
 ```
-example:http://christa.top
+example:https://christa.top
 ```
+使用了Material X作为本博客的主题
 ## 使用方法
 
 在文件目录下执行：
