@@ -68,7 +68,7 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': 'codesnippet',
     }
 }
-MEDIA_URL = "static/media/"
+MEDIA_URL = "/static/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'
