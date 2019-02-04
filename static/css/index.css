@@ -917,7 +917,8 @@ body #header {
 }
 #hero {
 	padding:54px 20px 20px;
-	background-color:#fff
+	/*background-color:#fff*/
+	background: url("/static/img/bg.png");
 }
 #hero .inner {
 	max-width:900px;
@@ -943,7 +944,7 @@ body #header {
 }
 #hero h2 {
 	font-family:Skranji,"Source Sans Pro","Helvetica Neue",Arial,sans-serif,cursive;
-	color:#1bc3fb;
+	color:#f7d55a;
 	font-weight:500;
 	font-size:2.4em;
 	display:none
@@ -987,7 +988,7 @@ body #header {
 	overflow:hidden;
 	border-radius:4px;
 	/*background:rgba(27,195,251,.7);*/
-	background: #977FFE;
+	background: #f89b10;
 	transition:all .28s ease;
 	-moz-transition:all .28s ease;
 	-webkit-transition:all .28s ease;
@@ -1015,7 +1016,7 @@ body #header {
 }
 #hero ol.pure li.active,#hero ol.pure li:active,#hero ol.pure li:hover,#hero ul.pure li.active,#hero ul.pure li:active,#hero ul.pure li:hover {
 	/*background:#1bc3fb;*/
-    background: #6b6bb8;
+    background: #d87b00;
 	transform:scale(1.03);
 	border-radius:4px;
 	box-shadow:0 4px 8px rgba(0,0,0,.12),0 8px 16px rgba(0,0,0,.12),0 16px 32px rgba(0,0,0,.12)
@@ -1256,7 +1257,7 @@ body #header {
 }
 #hero h2 {
 	display:block;
-	font-size:2em
+	font-size:3em
 }
 #hero .button {
 	font-size:.9em

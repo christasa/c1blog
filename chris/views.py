@@ -1,9 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse,render_to_response
 from django.core.paginator import  Paginator
-from plugin import codes
-import json
 from .models import Blog_contant,BlogType,Project
-from django.views.decorators.cache import cache_page, cache_control, never_cache
 # Create your views here.
 
 auth={}
@@ -35,7 +32,7 @@ def blog(request,type=None):
     # 将博客的分类以及数量都打印出来
     Type_all=[]
     for blogtype in BlogType.objects.all():
-        Types = {}
+        Types = {}          # 对传入的参数进行适配
         Types['type'] = blogtype
         Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
         Types['type_id'] = blogtype.id
