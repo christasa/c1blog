@@ -17,14 +17,20 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from chris import views
+from chris.feeds import BlogRssFeed
+from django.contrib.sitemaps.views import sitemap
+from chris.sitemaps import sitemaps
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'),
     path('index/',views.index),
-    path(r'blog/',views.blog),
+    path(r'blog/',views.blog,name='blog_list'),
     path(r'blog/<str:type>/',views.blog,name='blog'),
     path(r'details/<int:id>/',views.DetailBlog,name='detail'),
-    path(r'lists/',views.List),
+    path(r'lists/',views.List, name='lists'),
+    path(r'rss/',BlogRssFeed(), name='rss'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
