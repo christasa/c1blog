@@ -50,3 +50,6 @@ class Project(models.Model):
     class Meta:
         ordering = ['-datetime']
 
+class AboutMe(models.Model):
+    """About me"""
+    introduction = RichTextUploadingField()

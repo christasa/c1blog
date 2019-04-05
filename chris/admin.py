@@ -17,4 +17,4 @@ class ProjectsShow(admin.ModelAdmin):
 admin.site.register(models.Blog_contant, BlogShow)
 admin.site.register(models.BlogType,TypeShow)
 admin.site.register(models.Project,ProjectsShow)
-# admin.site.register(models.Task)
+admin.site.register(models.AboutMe)

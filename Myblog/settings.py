@@ -82,7 +82,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
+
+CSP_DEFAULT_SRC=("*","'unsafe-inline'" ,""'unsafe-eval'"")
+CSP_EXCLUDE_URL_PREFIXES = ('admin')
+
 
 ROOT_URLCONF = 'Myblog.urls'
 
@@ -111,14 +116,8 @@ WSGI_APPLICATION = 'Myblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'c1blogs',  # 数据库名字
-        'USER': 'postgres',  # 登录用户名
-        'PASSWORD': 'chrispaul3',  # 密码
-        'HOST': '',  # 数据库IP地址,留空默认为localhost
-        'PORT': '4668',  # 端口
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

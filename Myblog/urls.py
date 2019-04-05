@@ -30,6 +30,7 @@ urlpatterns = [
     path(r'details/<int:id>/',views.DetailBlog,name='detail'),
     path(r'lists/',views.List, name='lists'),
     path(r'rss/',BlogRssFeed(), name='rss'),
+    path(r'about/',views.about,name='about'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]

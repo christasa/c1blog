@@ -1,6 +1,8 @@
-from django.shortcuts import render,redirect,HttpResponse,render_to_response
+from django.shortcuts import render
 from django.core.paginator import  Paginator
-from .models import Blog_contant,BlogType,Project
+from .models import Blog_contant,BlogType,Project,AboutMe
+from csp.decorators import csp
+from csp.decorators import csp_exempt
 # Create your views here.
 
 auth={}
@@ -9,13 +11,16 @@ auth['userimgpath'] = '/static/img/christa.jpg'  # 头像地址
 auth['motto'] = '一枚热爱web安全的小白'  # 座右铭
 auth['github'] = 'https://github.com/chritsa'  # 项目地址
 
+@csp(DAFULE_SRC=["none"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+     STYLE_SRC=["'self' https://cdn.jsdelivr.net/"])
 def index(request):
     """首页"""
     global auth
     project = Project.objects.all()   # 首页博客信息
     return render(request,'index.html',{'pro':project,'auth':auth})
 
-
+@csp(DAFULE_SRC=["*"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+     STYLE_SRC=["https://cdn.jsdelivr.net/ 'self' 'unsafe-inline'"])
 def blog(request,type=None):
     """博客面展示"""
     global auth
@@ -39,6 +44,8 @@ def blog(request,type=None):
         Type_all.append(Types)
     return render(request,'blog.html',{'Them':page_of_blogs,'totals':total,'types':Type_all,'pro':project,'auth':auth})
 
+@csp(DAFULE_SRC=["none"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+     STYLE_SRC=["https://cdn.jsdelivr.net/npm/  'self'"])
 def DetailBlog(request,id):
     '''每一页的博客的详细内容'''
     global auth
@@ -61,6 +68,9 @@ def DetailBlog(request,id):
         Type_all.append(Types)
     return render(request,'cons.html',{'Thme':blogDetail,'side_in':all_blog,'types':Type_all,'pro':project,'auth':auth,'pre':preblog,'next':nextblog})
 
+
+@csp(DAFULE_SRC=["*"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+     STYLE_SRC=["https://cdn.jsdelivr.net/ 'self' "])
 def List(request):
     """"所有博客列表"""
     global auth
@@ -74,3 +84,19 @@ def List(request):
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
     return render(request,'lists.html',{'AllBlog':all_blog,'types':Type_all,'pro':project,'auth':auth})
+
+@csp(DAFULE_SRC=["*"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+     STYLE_SRC=["https://cdn.jsdelivr.net/ 'self' "])
+def about(request):
+    '''关于我'''
+    global auth
+    project = Project.objects.all()
+    Type_all = []
+    for blogtype in BlogType.objects.all():
+        Types = {}
+        Types['type'] = blogtype
+        Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
+        Types['type_id'] = blogtype.id
+        Type_all.append(Types)
+    about = AboutMe.objects.all()
+    return render(request,'about.html',{'types':Type_all,'pro':project,'auth':auth,'about':about})

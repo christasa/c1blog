@@ -14,7 +14,7 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         # 静态url的name
-        return ['index', 'blog_list','lists', 'rss']
+        return ['index', 'blog_list','lists' ,'rss']
 
     def location(self, item):
         return reverse_lazy(item)
