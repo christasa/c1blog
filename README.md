@@ -28,7 +28,7 @@ python manege.py createsuperuser
 ![](https://christa.top/static/media/uploads/2019/04/05/index.jpg)
 
 
-![](https://christa.top/static/media/uploads/2019/01/31/two.png)
+![](https://christa.top/static/media/uploads/2019/04/05/blogs.jpg)
 
 ![](https://christa.top/static/media/uploads/2019/01/31/third.png)
 
