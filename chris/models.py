@@ -52,4 +52,4 @@ class Project(models.Model):
 
 class AboutMe(models.Model):
     """About me"""
-    introduction = RichTextUploadingField()
+    introduce = RichTextUploadingField()
