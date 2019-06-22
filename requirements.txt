@@ -2,3 +2,4 @@ PyMySQL
 Django
 Pillow
 django-ckeditor
+django-csp
