@@ -33,7 +33,7 @@ def blog(request,type=None):
     page_of_blogs = paginator.get_page(page_num)
     project = Project.objects.all()
     total=Blog_contant.objects.all().count()   # 计算博客的总数
-    page_nums = page_of_blogs.number #获取但钱页码
+    page_nums = page_of_blogs.number #获取当前页码
     # 将博客的分类以及数量都打印出来
     Type_all=[]
     for blogtype in BlogType.objects.all():
@@ -44,7 +44,7 @@ def blog(request,type=None):
         Type_all.append(Types)
     return render(request,'blog.html',{'Them':page_of_blogs,'totals':total,'types':Type_all,'pro':project,'auth':auth})
 
-@csp(DAFULE_SRC=["none"],IMG_SRC=["'self'"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
+@csp(DAFULE_SRC=["none"],IMG_SRC=["*"],SCRIPT_SRC=["'self' 'unsafe-inline' 'unsafe-eval' http://busuanzi.ibruce.info/"],
      STYLE_SRC=["https://cdn.jsdelivr.net/npm/  'self'"])
 def DetailBlog(request,id):
     '''每一页的博客的详细内容'''
