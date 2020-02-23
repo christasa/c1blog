@@ -1,0 +1,6 @@
+c1blog_env/
+tutorial-env/
+.DS_Store
+.idea/
+/cores/migrations/*
+!/cores/migrations/__init__.py
