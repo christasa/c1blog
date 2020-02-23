@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="sr">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ auth.username }}'s blog</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="theme-color" content="#f24e32">
+    <meta name="msapplication-TileColor" content="#f24e32">
+    <link rel="stylesheet" href="/static/css/waves.css">
+      <link rel="shortcut icon" href="/static/img/trees.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.css">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <script>function setLoadingBarProgress(e) {
+        document.getElementById("loading-bar").style.width = e + "%"
+      }</script>
+  </head>
+
+  <body>
+    <div id="loading-bar-wrapper">
+      <div id="loading-bar" class="pure"></div>
+    </div>
+    <script>setLoadingBarProgress(20)</script>
+{% include "include/Headers.html" %}
+    {% block body %}
+    {% endblock %}
+    <script>setLoadingBarProgress(40)</script>
+    <div class="l_body">
+      <div class="container clearfix">
+        <div class="l_main">
+          <article id="links" class="post white-box body-blur article-type-links" itemscope="" itemprop="blogPost"><section class="meta">
+              <meting-js mini="true" autoplay="" volume="0.7" loop="" order="list" server="netease" type="song" id="16846091">
+                  <div >
+              <div class="aplayer-body">
+        <div class="aplayer-pic" style="background-image: url(&quot;https://api.i-meto.com/meting/api?server=netease&amp;type=pic&amp;id=663005511556827&amp;auth=23264b1f7a240d19223ccd26015ab61606db92b65e9d660256ee2393cd0cd35a&quot;);background-color: #b7daff;">
+    </div>
+    <div class="aplayer-notice"></div>
+</div>
+</div></meting-js>
+              <div class="meta" id="header-meta">
+                  <h1 class="title">
+                      <a href="/friends">我的朋友们</a>
+                  </h1><div class="new-meta-box">
+
+              </div>
+                  <hr>
+              </div>
+          </section>
+              <section class="article typo l_friends">
+                  <div class="friends-group"><br>
+                      <h3 class="friend-header"></h3>
+                      <div class="friend-content">
+                          {% for eachf in fre %}
+                          <a class="friend-card" style="background:{{ eachf.color }};color:#555" target="_blank" rel="external nofollow noopener noreferrer" href="{{ eachf.url }}">
+                              <div class="friend-left">
+                                  <img class="avatar" src="{{eachf.logo_url}}">
+                              </div>
+                              <div class="friend-right">
+                                  <p class="friend-name">{{eachf.name }}</p>
+                              </div>
+                          </a>
+                        {% endfor %}
+                      </div>
+                  </div>
+              </section>
+          </article>
+        </div>
+            {% include "include/author.html" %}
+      {% block content %}
+      {% endblock %}
+        <script>setLoadingBarProgress(60)</script></div>
+      <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+    </div>
+    {% include "include/footers.html" %}
+    {% block footer %}
+    {% endblock %}
+    <script>setLoadingBarProgress(80)</script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY = "",
+      GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "",
+      ALGOLIA_API_KEY = "",
+      ALGOLIA_APP_ID = "",
+      ALGOLIA_INDEX_NAME = "",
+      AZURE_SERVICE_NAME = "",
+      AZURE_INDEX_NAME = "",
+      AZURE_QUERY_KEY = "",
+      BAIDU_API_ID = "",
+      SEARCH_SERVICE = "hexo",
+      ROOT = "/blog/";
+      ROOT.endsWith("/") || (ROOT += "/")</script>
+{#    <script src="/static/js/scrollreveal.js"></script>#}
+    <script type="text/javascript">$(function() {
+        const $reveal = $('.reveal');
+        if ($reveal.length === 0) return;
+        const sr = ScrollReveal({
+          distance: 0
+        });
+        sr.reveal('.reveal');
+      });</script>
+    <script src="/static/js/waves.js"></script>
+    <script type="text/javascript">$(function() {
+        Waves.attach(".flat-btn", ["waves-button"]),
+        Waves.attach(".float-btn", ["waves-button", "waves-float"]),
+        Waves.attach(".float-btn-light", ["waves-button", "waves-float", "waves-light"]),
+        Waves.attach(".flat-box", ["waves-block"]),
+        Waves.attach(".float-box", ["waves-block", "waves-float"]),
+        Waves.attach(".waves-image"),
+        Waves.init()
+      })</script>
+    <script async src="/static/js/busuanzi.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>setLoadingBarProgress(100)</script>
+    <script>!
+      function(o) {
+        var i = Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));
+        function c(t, e) {
+          var n = new Image,
+          o = t.getAttribute("data-original");
+          n.onload = function() {
+            t.src = o,
+            e && e()
+          },
+          n.src = o
+        }
+        function n() {
+          for (var t = 0; t < i.length; t++) e = i[t],
+          void 0,
+          0 <= (n = e.getBoundingClientRect()).top && 0 <= n.left && n.top <= (o.innerHeight || document.documentElement.clientHeight) && c(i[t],
+          function() {
+            i.splice(t, t)
+          });
+          var e, n;
+          console.log("trigger")
+        }
+        n(),
+        o.addEventListener("scroll",
+        function() {
+          var t, e;
+          t = n,
+          e = o,
+          clearTimeout(t.tId),
+          t.tId = setTimeout(function() {
+            t.call(e)
+          },
+          500)
+        })
+      } (this);</script>
+  </body>
+
+</html>

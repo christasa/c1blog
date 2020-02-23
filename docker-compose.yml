@@ -1,0 +1,46 @@
+version: '3.2'
+services:
+ nginx:
+   image: nginx:latest
+   links:
+     - web
+   volumes:
+     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+     - type: volume
+       source: webstatic
+       target: /usr/src/c1blog/static
+   ports:
+     - "80:80"
+   networks:
+     - innet
+
+ postgres:
+   image: postgres:latest
+   restart: always
+   privileged: true
+   environment:
+     POSTGRES_DB: postgres
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: postgres
+   networks:
+     - innet
+   volumes:
+     - /tmp/pgData:/var/lib/postgresql/data
+ web:
+   build: .
+   image: c1blog
+   links:
+     - postgres
+   restart: always
+   networks:
+     - innet
+   volumes:
+     - webstatic:/usr/src/c1blog/static
+   command: sh run.sh
+
+volumes:
+  webstatic:
+networks:
+  innet:
+    driver: bridge
+

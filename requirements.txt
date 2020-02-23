@@ -1,5 +1,5 @@
-PyMySQL
 Django
 Pillow
+psycopg2
 django-ckeditor
-django-csp
+gunicorn

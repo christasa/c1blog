@@ -3,10 +3,10 @@
     <div class="headers">
         <div class="topsHead">
             <div ><a href="javascript:void(0)" class="left-side" ><i class="iconfont icon-arr-right"></i></a></div>
-            <a href="/index" id="smallTitle">Christa's blog</a>
+            <a href="/index" id="smallTitle">{{auth.username}}</a>
         </div>
         <div class="titles">{{ Thme.title }}</div>
-        <p>喜欢web开发与安全的小白</p>
+        <p>{{ auth.motto }}</p>
         <p><br/>#{{ Thme.blog_type }}</p>
 </div>
     <a href="javascript:void(0)" class="gotop" onclick="goto_top()"><i class="iconfont icon-xiangshang" ></i></a>

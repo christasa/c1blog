@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="sr">
-
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -15,6 +14,7 @@
       <link rel="shortcut icon" href="/static/img/trees.ico" type="image/x-icon" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.css">
     <link rel="stylesheet" href="/static/css/style.min.css">
+      <link rel="stylesheet" href="/static/css/all.min.css">
     <script>function setLoadingBarProgress(e) {
         document.getElementById("loading-bar").style.width = e + "%"
       }</script>
@@ -29,6 +29,7 @@
     {% include "include/Headers.html" %}
     {% block body %}
     {% endblock %}
+
     <script>setLoadingBarProgress(40)</script>
     <div class="l_body">
       <div class="container clearfix">
@@ -105,18 +106,8 @@
     {% endblock %}
     <script>setLoadingBarProgress(80)</script>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
-    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY = "",
-      GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "",
-      ALGOLIA_API_KEY = "",
-      ALGOLIA_APP_ID = "",
-      ALGOLIA_INDEX_NAME = "",
-      AZURE_SERVICE_NAME = "",
-      AZURE_INDEX_NAME = "",
-      AZURE_QUERY_KEY = "",
-      BAIDU_API_ID = "",
-      SEARCH_SERVICE = "hexo",
-      ROOT = "/blog/";
-      ROOT.endsWith("/") || (ROOT += "/")</script>
+    <script src="/static/js/search.js"></script>
+    <script src="/static/js/jquery.backstretch.min.js"></script>
     <script src="/static/js/scrollreveal.js"></script>
     <script type="text/javascript">$(function() {
         const $reveal = $('.reveal');
