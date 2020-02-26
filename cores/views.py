@@ -29,7 +29,7 @@ def blog(request,type=None):
     if request.method == "POST":
         query = request.POST.get('search')
         if query:
-            blog_all_list = Blog_contant.objects.filter(author__blog_contant__title__icontains = query)
+            blog_all_list = Blog_contant.objects.filer(blog_contant__title__icontains = query)
     paginator = Paginator(blog_all_list,6)  # 每10页进行分页
     page_of_blogs = paginator.get_page(page_num)
     project = Project.objects.all()
