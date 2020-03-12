@@ -1,21 +1,21 @@
 #! /usr/bin/env sh
 
 # Wait postgresql
-sleep 5
+sleep 10
 
-python manage.py makemigrations \
-    && python manage.py migrate
+python manage.py makemigrations 
+python manage.py migrate
 
 
 
-if [ -n "${SUPUSER}" ];then
-  echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('${SUPUSER}', '${EMAIL}', '${SUPPASSWD}')" | python manage.py shell 2>/dev/null &
-  export SUPUSER=''
-  unset SUPUSER
-  export SUPPASSWD=''
-  unset SUPPASSWD
-  unset EMAIL
-fi
+
+python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('${SUPUSER}', '${EMAIL}', '${SUPPASSWD}') if not User.objects.filter(username='${SUPUSER}').exists() else 0"
+export SUPUSER=''
+unset SUPUSER
+export SUPPASSWD=''
+unset SUPPASSWD
+unset EMAIL
+
 
 BASE_DIR=$(pwd)
 
