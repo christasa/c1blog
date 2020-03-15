@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
 # Wait postgresql
-sleep 10
+wait-for-it.sh -t 0 postgres:5432 -- echo "postgres is up"
 
 python manage.py makemigrations 
 python manage.py migrate
