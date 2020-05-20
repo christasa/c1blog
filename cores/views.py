@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import  Paginator
+from django.views.decorators.cache import cache_page
 from .models import Blog_contant,BlogType,Project,AboutMe,Friends
 # Create your views here.
 
@@ -9,7 +10,7 @@ auth['userimgpath'] = '/static/img/user.jpg'
 auth['motto'] = 'moto'
 auth['github'] = '# '
 
-
+@cache_page(60*10) 
 def index(request):
     """首页"""
     global auth
@@ -17,6 +18,7 @@ def index(request):
     return render(request,'index.html',{'pro':project,
                                         'auth':auth})
 
+@cache_page(60*10)
 def blog(request,type=None):
     """博客面展示"""
     global auth
@@ -49,6 +51,7 @@ def blog(request,type=None):
                                        'pro':project,
                                        'auth':auth})
 
+@cache_page(60*15)
 def DetailBlog(request,id):
     '''Detail of blog'''
     global auth
@@ -78,6 +81,7 @@ def DetailBlog(request,id):
                                        'next':nextblog})
 
 
+@cache_page(60*5)
 def List(request):
     """"所有博客列表"""
     global auth
@@ -95,6 +99,7 @@ def List(request):
                                         'pro':project,
                                         'auth':auth})
 
+@cache_page(60*5) 
 def about(request):
     '''About me'''
     global auth
@@ -112,7 +117,7 @@ def about(request):
                                         'auth':auth,
                                         'about':about})
 
-
+@cache_page(60*5)
 def friend(request):
     """Friends """
     global auth
