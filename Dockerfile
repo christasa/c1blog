@@ -24,6 +24,7 @@ RUN set -ex \
 
 COPY . /usr/src/c1blog
 RUN chmod +x /usr/src/c1blog/run.sh && \
+    chmod +x /usr/local/bin/wait-for-it.sh && \
     chmod 755 /usr/src/c1blog
 
 WORKDIR /usr/src/c1blog
