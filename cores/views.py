@@ -1,58 +1,78 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.core.paginator import  Paginator
 from django.views.decorators.cache import cache_page
-from .models import Blog_contant,BlogType,Project,AboutMe,Friends
+
+from .models import AboutMe, Blog_contant, BlogType, Friends, Project
+
 # Create your views here.
 
-auth={}
+auth = {}
 auth['username'] = 'name'
 auth['userimgpath'] = '/static/img/user.jpg'
 auth['motto'] = 'moto'
-auth['github'] = '# '
+auth['github'] = '#'
 
-@cache_page(60*10) 
+
+@cache_page(60*10)
 def index(request):
     """首页"""
     global auth
     project = Project.objects.all()   # 首页博客信息
-    return render(request,'index.html',{'pro':project,
-                                        'auth':auth})
+    return render(
+        request,
+        'index.html',
+        {
+            'pro': project,
+            'auth': auth
+        }
+    )
+
 
 @cache_page(60*10)
-def blog(request,type=None):
+def blog(request, type=None):
     """博客面展示"""
     global auth
     page_num = request.GET.get('page', 1)
     if type:
-        blog_all_list = Blog_contant.objects.filter(blog_type = type)
+        blog_all_list = Blog_contant.objects.filter(blog_type=type)
     else:
         blog_all_list = Blog_contant.objects.all()
 
     if request.method == "POST":
         query = request.POST.get('search')
         if query:
-            blog_all_list = Blog_contant.objects.filter(author__blog_contant__title__icontains = query)
-    paginator = Paginator(blog_all_list,6)  # 每10页进行分页
+            blog_all_list = Blog_contant.objects.filter(
+                author__blog_contant__title__icontains=query
+            )
+    paginator = Paginator(blog_all_list, 6)  # 每10页进行分页
     page_of_blogs = paginator.get_page(page_num)
     project = Project.objects.all()
-    total=Blog_contant.objects.all().count()   # 计算博客的总数
-    page_nums = page_of_blogs.number #获取当前页码
+    total = Blog_contant.objects.all().count()   # 计算博客的总数
     # 将博客的分类以及数量都打印出来
-    Type_all=[]
+    Type_all = []
     for blogtype in BlogType.objects.all():
         Types = {}          # 对传入的参数进行适配
         Types['type'] = blogtype
-        Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
+        Types['type_count'] = Blog_contant.objects.filter(
+                                  blog_type=blogtype
+                              ).count()
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
-    return render(request,'blog.html',{'Them':page_of_blogs,
-                                       'totals':total,
-                                       'types':Type_all,
-                                       'pro':project,
-                                       'auth':auth})
+    return render(
+        request,
+        'blog.html',
+        {
+            'Them': page_of_blogs,
+            'totals': total,
+            'types': Type_all,
+            'pro': project,
+            'auth': auth
+        }
+    )
+
 
 @cache_page(60*15)
-def DetailBlog(request,id):
+def DetailBlog(request, id):
     '''Detail of blog'''
     global auth
     blogDetail = Blog_contant.objects.get(id=id)  # 定位到当前博客的位置
@@ -61,24 +81,32 @@ def DetailBlog(request,id):
     Type_all = []
     # True the page
     try:
-        preblog = Blog_contant.objects.get(id=id-1)
-    except:preblog=None
+        preblog = Blog_contant.objects.get(id=id - 1)
+    except Exception as e:
+        preblog = None
     try:
-        nextblog = Blog_contant.objects.get(id=id+1)
-    except:nextblog=None
+        nextblog = Blog_contant.objects.get(id=id + 1)
+    except Exception as e:
+        nextblog = None
     for blogtype in BlogType.objects.all():
         Types = {}
         Types['type'] = blogtype
         Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
-    return render(request,'cons.html',{'Thme':blogDetail,
-                                       'side_in':all_blog,
-                                       'types':Type_all,
-                                       'pro':project,
-                                       'auth':auth,
-                                       'pre':preblog,
-                                       'next':nextblog})
+    return render(
+        request,
+        'cons.html',
+        {
+            'Thme': blogDetail,
+            'side_in': all_blog,
+            'types': Type_all,
+            'pro': project,
+            'auth': auth,
+            'pre': preblog,
+            'next': nextblog
+        }
+    )
 
 
 @cache_page(60*5)
@@ -94,12 +122,19 @@ def List(request):
         Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
-    return render(request,'lists.html',{'AllBlog':all_blog,
-                                        'types':Type_all,
-                                        'pro':project,
-                                        'auth':auth})
+    return render(
+        request,
+        'lists.html',
+        {
+            'AllBlog': all_blog,
+            'types': Type_all,
+            'pro': project,
+            'auth': auth
+        }
+    )
 
-@cache_page(60*5) 
+
+@cache_page(60*5)
 def about(request):
     '''About me'''
     global auth
@@ -112,10 +147,17 @@ def about(request):
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
     about = AboutMe.objects.all()
-    return render(request,'about.html',{'types':Type_all,
-                                        'pro':project,
-                                        'auth':auth,
-                                        'about':about})
+    return render(
+        request,
+        'about.html',
+        {
+            'types': Type_all,
+            'pro': project,
+            'auth': auth,
+            'about': about
+        }
+    )
+
 
 @cache_page(60*5)
 def friend(request):
@@ -130,7 +172,13 @@ def friend(request):
         Types['type_count'] = Blog_contant.objects.filter(blog_type=blogtype).count()
         Types['type_id'] = blogtype.id
         Type_all.append(Types)
-    return render(request, 'friends.html', {'types': Type_all,
-                                            'pro': project,
-                                            'fre': all_friends,
-                                            'auth': auth})
+    return render(
+        request,
+        'friends.html',
+        {
+            'types': Type_all,
+            'pro': project,
+            'fre': all_friends,
+            'auth': auth
+        }
+    )

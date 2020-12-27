@@ -1,10 +1,8 @@
-#_*_coding:utf-8_*_
-# _Author : Christa
-# Date :2019/3/30 23:51
-# FileName : feed.py
+# _*_coding:utf-8_*_
 
 from django.contrib.syndication.views import Feed
 from django.urls import reverse_lazy
+
 from .models import Blog_contant
 from .views import auth
 
@@ -17,7 +15,8 @@ class BlogRssFeed(Feed):
     link = ""
     # 显示在聚合阅读器上的描述信息
     description = ""
-    url=reverse_lazy('rss')
+    url = reverse_lazy('rss')
+
     # 需要显示的内容条目
     def items(self):
         return Blog_contant.objects.all()
@@ -31,4 +30,4 @@ class BlogRssFeed(Feed):
         return item.abstract
 
     def item_link(self, item):
-        return reverse_lazy('detail',kwargs={'id':item.id})
+        return reverse_lazy('detail', kwargs={'id': item.id})

@@ -1,7 +1,4 @@
-#_*_coding:utf-8_*_
-# _Author : Christa
-# Date :2019/3/31 14:38
-# FileName : sitemap.py
+# _*_coding:utf-8_*_
 
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse_lazy
@@ -14,7 +11,7 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         # 静态url的name
-        return ['index', 'blog_list','lists' ,'rss']
+        return ['index', 'blog_list', 'lists', 'rss']
 
     def location(self, item):
         return reverse_lazy(item)

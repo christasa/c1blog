@@ -17,7 +17,7 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories &
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 
 ARG PIP_MIRROR="https://pypi.tuna.tsinghua.edu.cn/simple"
-ADD ./requirements.txt /requirements.txt
+COPY ./requirements.txt /requirements.txt
 
 RUN set -ex \
     && pip install -i $PIP_MIRROR -r /requirements.txt

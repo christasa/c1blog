@@ -45,28 +45,33 @@ INSTALLED_APPS = [
 ]
 
 # ckeditor 插件的显示配置
-CKEDITOR_CONFIGS = {
-    'default': {
-        'update': ['Image', 'Update', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
-                'skin': 'moono',
-                'toolbar_Basic': [
-                    ['Source', '-', 'Bold', 'Italic']
-                ],
-        'toolbar': (['div', 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
-                    ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
-                    ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat', '-', 'Maximize',
+CKEDITOR_CONFIGS = {'default': {
+        'update': 
+        [
+            'Image', 'Update', 'Table', 
+            'HorizontalRule', 'Smiley', 
+            'SpecialChar', 'PageBreak'
+        ],
+        'skin': 'moono',
+        'toolbar_Basic': 
+        [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar': (
+            ['div', 'Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+            ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat', '-', 'Maximize',
                      'ShowBlocks', '-', "CodeSnippet", 'Subscript', 'Superscript'],
-                    ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+            ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
                      'HiddenField'],
-                    ['Bold', 'Italic', 'Underline', 'Strike', '-'],
-                    ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
-                    ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                    ['Link', 'Unlink', 'Anchor'],
-                    ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
-                    ['Styles', 'Format', 'Font', 'FontSize'],
-                    ['TextColor', 'BGColor'],
-
-                    ),
+            ['Bold', 'Italic', 'Underline', 'Strike', '-'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+        ),
         'extraPlugins': 'codesnippet',
     }
 }
@@ -87,14 +92,12 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'c1blog.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,7 +144,7 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': '/tmp/django_cache',
-        #'LOCATION': 'c:\foo\bar',#windows
+        # 'LOCATION': 'c:\foo\bar',#windows
     }
 }
 
@@ -162,7 +165,10 @@ CACHES = {
 #         }
 #     }
 # }
-NEVER_REDIS_TIMEOUT = 3000 # 缓存秒数
+
+
+NEVER_REDIS_TIMEOUT = 3000  # 缓存秒数
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -185,7 +191,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-#修改支持中文
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -201,14 +206,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,"/statics/"),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "/statics/"),
 ]
 
-STATICFILES_FINDERS =(
+STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
