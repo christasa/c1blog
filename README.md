@@ -21,11 +21,19 @@ auth['userimgpath'] = '/static/img/user.jpg'
 auth['motto'] = 'moto'
 auth['github'] = '# '
 ```
-Next, custom admin account in Dockerfile
+Next, custom admin account in Dockerfile and docker-compose.yml
 ```dockerfile
 ENV SECRET_KEY=SECRET_KEYS USERNAME=postgres PASSWORD=postgres
 ENV SUPUSER=admin EMAIL="admin@admin.com" SUPPASSWD=admin
 ```
+
+```dockerfile
+environment:
+     POSTGRES_DB: postgres
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: postgres
+```
+
 Finally, run command 
 ```shell script
 docker-compose up -d

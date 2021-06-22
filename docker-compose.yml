@@ -17,7 +17,6 @@ services:
  postgres:
    image: postgres:latest
    restart: always
-   privileged: true
    environment:
      POSTGRES_DB: postgres
      POSTGRES_USER: postgres

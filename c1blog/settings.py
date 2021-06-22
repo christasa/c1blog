@@ -140,13 +140,13 @@ DATABASES = {
 # }
 
 # 本地文件缓存
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/tmp/django_cache',
-        # 'LOCATION': 'c:\foo\bar',#windows
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': '/tmp/django_cache',
+#         # 'LOCATION': 'c:\foo\bar',#windows
+#     }
+# }
 
 # 内存缓存，线程安全
 
