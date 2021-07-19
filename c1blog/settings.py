@@ -128,45 +128,6 @@ DATABASES = {
 }
 
 
-# Cache
-
-# 数据库缓存
-# python manage.py createcachetable my_cache_table
-# CACHES = {
-#     'default':{
-#         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION': 'my_cache_table'.
-#     }
-# }
-
-# 本地文件缓存
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/tmp/django_cache',
-#         # 'LOCATION': 'c:\foo\bar',#windows
-#     }
-# }
-
-# 内存缓存，线程安全
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#         'LOCATION': 'unique-snowflake'
-#     }
-# }
-# CACHES = {
-#     "default": {
-#     "BACKEND": "django_redis.cache.RedisCache",
-#     "LOCATION": "redis://10.10.10.131:6379/",
-#     "OPTIONS": {
-#     "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
-
-
 NEVER_REDIS_TIMEOUT = 3000  # 缓存秒数
 
 # Password validation
