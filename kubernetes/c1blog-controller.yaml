@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: c1blog
+spec:
+  selector:
+    matchLabels:
+      app: c1blog
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: c1blog
+    spec:
+      containers:
+      - name: c1blog
+        image: c1blog:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        volumeMounts:
+          - mountPath: "/usr/src/c1blog/static"
+            name: static
+      volumes:
+      - name: static
+        persistentVolumeClaim:
+          claimName: c1static
+

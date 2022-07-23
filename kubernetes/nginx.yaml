@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: c1blog-service
+  labels:
+    app: c1nginx
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: c1nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: c1nginx
+spec:
+  selector:
+    matchLabels:
+      app: c1nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: c1nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: static
+          mountPath: "/usr/src/c1blog/static"
+        - name: config
+          mountPath: "/etc/nginx/conf.d"
+      volumes:
+        - name: static
+          persistentVolumeClaim:
+            claimName: c1static
+        - name: config
+          persistentVolumeClaim:
+            claimName: nginx-conf 

@@ -3,6 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/christasa/c1blog)
 [![python](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)](https://github.com/christasa/c1blog)
 
+###### 增加Kubernetes服务配置
 ###### 引入docker
 
 ```
